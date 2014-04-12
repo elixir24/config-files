@@ -1,0 +1,17 @@
+:inoremap { {}<Esc>i
+:inoremap ( ()<Esc>i
+set history=1000
+set ignorecase
+set smartcase
+set title
+set hlsearch 
+set incsearch
+filetype plugin indent on
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set number
+set ruler
+set foldenable
+set autochdir
