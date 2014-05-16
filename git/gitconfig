@@ -1,0 +1,11 @@
+[user]
+	name = Piyush Maheshwari
+	email = piyushisnow@gmail.com
+[core]
+	excludesfile = /home/piyush/.gitignore
+[alias]
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+[push]
+    default = simple
+[credential]
+    helper = cache --timeout=3600
