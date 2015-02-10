@@ -112,3 +112,13 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+# enabling cd..... 
+function cd () {
+  local -ri n=${#*};
+  if [ $n -eq 0 -o -d "${!n}" -o "${!n}" == "-" ]; then
+    builtin cd "$@";
+  else
+    local e="s:\.\.\.:../..:g";
+    builtin cd "${@:1:$n-1}" $(sed -e$e -e$e -e$e <<< "${!n}");
+  fi
+}
