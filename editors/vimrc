@@ -16,3 +16,5 @@ set number
 set ruler
 set foldenable
 set autochdir
+set cursorline
+:imap ii <Esc>
