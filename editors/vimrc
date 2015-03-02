@@ -17,4 +17,4 @@ set ruler
 set foldenable
 set autochdir
 set cursorline
-:imap ii <Esc>
+:inoremap jk <Esc>
