@@ -19,3 +19,7 @@ set foldenable
 set autochdir
 set cursorline
 :inoremap jk <Esc>
+set showmode
+set hidden 
+set mouse=a
+set noswapfile
