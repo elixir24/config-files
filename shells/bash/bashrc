@@ -147,10 +147,7 @@ function cd () {
   fi
 }
 
-# this is for executing the mac bash alias file only on mac
-sw_vers > /dev/null 2>&1
-if [ $? -eq 0 ]
-then
+if [ -f ~/.mac_bash_aliases ]; then
     source ~/.mac_bash_aliases
 fi
 
