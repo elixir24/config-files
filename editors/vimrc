@@ -1,3 +1,5 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
 :syntax on
 :inoremap { {}<Esc>i
 :inoremap ( ()<Esc>i
@@ -25,3 +27,8 @@ set mouse=a
 set noswapfile
 set cindent
 set nowrap
+let mapleader = "\<Space>"
+nnoremap <leader>s :set spell!
+:inoremap jj <Esc>/[)}"'\]>]<CR>:nohl<CR>a
+set encoding=utf-8
+execute pathogen#infect()
