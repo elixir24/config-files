@@ -1,0 +1,7 @@
+#This gets called from .profile when a new shells gets spawned from macosx 
+#and this is the entry level script when a new shell is spawned on a remote linux host
+export PATH=/home/y/bin64:$PATH
+source ~/.git-completion.bash
+source ~/.bashrc
+
+export PATH="/usr/local/bin:$PATH"
