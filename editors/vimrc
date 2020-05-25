@@ -1,34 +1,101 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-:syntax on
-:inoremap { {}<Esc>i
-:inoremap ( ()<Esc>i
-set history=1000
-set ignorecase
-set smartcase
-set incsearch
-set title
-set hlsearch 
-set incsearch
+" Welcome to Vim (http://go/vim).
+"
+" If you see this file, your homedir was just created on this workstation.
+" That means either you are new to Google (in that case, welcome!) or you
+" got yourself a faster machine.
+" Either way, the main goal of this configuration is to help you be more
+" productive; if you have ideas, praise or complaints, direct them to
+" vi-users@google.com (http://g/vi-users). We'd especially like to hear from you
+" if you can think of ways to make this configuration better for the next
+" Noogler.
+" If you want to learn more about Vim at Google, see http://go/vimintro.
+
+" Enable modern Vim features not compatible with Vi spec.
+set nocompatible
 filetype plugin indent on
-set smartindent
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set number
-set ruler
-set foldenable
-set autochdir
-set cursorline
-:inoremap jk <Esc>
-set showmode
-set hidden 
+" formatting, and for which all checked-in code is already conforming (thus,
+" autoformatting will never change unrelated lines in a file).
+augroup autoformat_settings
+  " For BUILD files and Go all of Google's files must be formatted.
+  autocmd FileType bzl AutoFormatBuffer buildifier
+  autocmd FileType go AutoFormatBuffer gofmt
+augroup END
+vmap <leader>f :FormatLines<CR>:w<CR>
+nmap <leader>f :FormatLines<CR>:w<CR>
+
+
+" Enable file type based indent configuration and syntax highlighting.
+" Note that when code is pasted via the terminal, vim by default does not detect
+" that the code is pasted (as opposed to when using vim's paste mappings), which
+" leads to incorrect indentation when indent mode is on.
+" To work around this, use ":set paste" / ":set nopaste" to toggle paste mode.
+" You can also use a plugin to:
+" - enter insert mode with paste (https://github.com/tpope/vim-unimpaired)
+" - auto-detect pasting (https://github.com/ConradIrwin/vim-bracketed-paste)
+filetype plugin indent on
+syntax on
+set history=10000
+set smartcase
+set incsearch
+set ignorecase
 set mouse=a
-set noswapfile
-set cindent
-set nowrap
-let mapleader = "\<Space>"
-nnoremap <leader>s :set spell!
-:inoremap jj <Esc>/[)}"'\]>]<CR>:nohl<CR>a
-set encoding=utf-8
-execute pathogen#infect()
+set number
+inoremap jk <Esc>
+inoremap jj <C-o>a
+
+let mapleader="\\"
+
+
+set hidden
+
+"nnoremap <C-7> :bprevious<CR>
+"nnoremap <C-6> :bnext<CR>
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
+nnoremap <C-X> :bdelete<CR>
+
+
+" You complete me
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" CtrlP
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ --ignore .git5_specs
+      \ --ignore review
+      \ -g ""'
+
+" TagBar config
+nmap <F1> :TagbarToggle<CR>
+let g:tagbar_left = 1
+
+"Auto save config
+let g:auto_save_write_all_buffers = 1
+
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Change default paste behavior.
+xnoremap p "_dP
+
+syntax enable
+let g:solarized_termcolors=256
+let g:solarized_visibility = "high"
+let g:solarized8_contrast = "high"
+let g:solarized_bold=1
+set background=light
+"colorscheme peaksea
+
+" To get vim autocomplete to work like bash autocomplete
+set wildmode=longest,list,full
+set wildmenu
